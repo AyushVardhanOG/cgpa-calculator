@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CGPA Calculator — Academic Transcript Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="watermark" id="watermark">DRAFT&nbsp;PROJECTION</div>
+
+<div class="page">
+
+  <header class="masthead">
+    <div class="masthead-top">
+      <span class="eyebrow">Office of the Registrar · Self-Reported</span>
+      <div class="mode-switch" id="modeSwitch" role="button" tabindex="0" aria-pressed="false">
+        <span class="mode-switch-label">Official</span>
+        <span class="mode-switch-track"><span class="mode-switch-thumb"></span></span>
+        <span class="mode-switch-label">What&nbsp;If</span>
+      </div>
+    </div>
+    <h1 class="title">CGPA Calculator</h1>
+    <div class="student-line">
+      <label class="student-field">
+        <span>Name</span>
+        <input type="text" id="studentName" placeholder="Student name" maxlength="40">
+      </label>
+      <label class="student-field">
+        <span>Program</span>
+        <input type="text" id="studentProgram" placeholder="e.g. B.Tech CSE" maxlength="40">
+      </label>
+      <label class="student-field">
+        <span>Scale</span>
+        <select id="scaleSelect">
+          <option value="10">10.0</option>
+          <option value="4">4.0</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <main class="ledger-wrap">
+
+    <section class="ledger-main">
+
+      <div class="semesters" id="semesters"></div>
+
+      <button class="add-semester-btn" id="addSemesterBtn">
+        <span class="plus">+</span> Add semester
+      </button>
+
+      <div class="whatif-panel" id="whatifPanel" hidden>
+        <div class="whatif-head">
+          <h2>Simulate remaining semesters</h2>
+          <p>Project a target grade average across the semesters you have left, and see the CGPA you'd graduate with. This does not touch your real record above.</p>
+        </div>
+        <div class="whatif-controls">
+          <label>
+            Semesters remaining
+            <input type="number" id="whatifCount" min="0" max="16" value="2">
+          </label>
+          <label>
+            Avg. credits / semester
+            <input type="number" id="whatifCredits" min="1" max="40" value="24">
+          </label>
+          <label>
+            Target grade
+            <select id="whatifGrade"></select>
+          </label>
+        </div>
+        <div class="whatif-result" id="whatifResult"></div>
+      </div>
+
+    </section>
+
+    <aside class="ledger-side">
+      <div class="seal-wrap">
+        <div class="seal" id="seal">
+          <div class="seal-ring">
+            <svg viewBox="0 0 200 200" class="seal-text-ring" aria-hidden="true">
+              <path id="sealArc" d="M 100,100 m -78,0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0" fill="none"/>
+              <text font-size="11" letter-spacing="3">
+                <textPath href="#sealArc" startOffset="0%">CUMULATIVE GRADE POINT AVERAGE · CUMULATIVE GRADE POINT AVERAGE · </textPath>
+              </text>
+            </svg>
+            <div class="seal-center">
+              <span class="seal-value" id="cgpaValue">0.00</span>
+              <span class="seal-scale" id="cgpaScale">/ 10.0</span>
+            </div>
+          </div>
+        </div>
+        <p class="seal-caption" id="sealCaption">No subjects recorded yet</p>
+      </div>
+
+      <div class="stat-block">
+        <div class="stat-row">
+          <span>Total credits</span>
+          <span id="totalCredits">0</span>
+        </div>
+        <div class="stat-row">
+          <span>Semesters logged</span>
+          <span id="totalSemesters">0</span>
+        </div>
+      </div>
+
+      <div class="history">
+        <h3>Semester history</h3>
+        <table>
+          <thead><tr><th>Sem</th><th>Credits</th><th>SGPA</th></tr></thead>
+          <tbody id="historyBody"><tr class="empty-row"><td colspan="3">—</td></tr></tbody>
+        </table>
+      </div>
+
+      <div class="grade-key">
+        <h3>Grade key</h3>
+        <div id="gradeKeyList" class="grade-key-list"></div>
+      </div>
+    </aside>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-rule"></div>
+    <p class="footer-credit">
+      Built by <strong>Ayush Vardhan</strong>
+      <span class="footer-links">
+        <a href="https://github.com/AyushVardhanOG" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GitHub</a>
+        <span class="dot">·</span>
+        <a href="https://www.linkedin.com/in/ayush-vardhan-singh/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+      </span>
+    </p>
+  </footer>
+
+</div>
+
+<template id="subjectRowTemplate">
+  <div class="subject-row">
+    <input type="text" class="subj-name" placeholder="Subject name" maxlength="60">
+    <select class="subj-credit"></select>
+    <select class="subj-grade"></select>
+    <span class="subj-points">0.00</span>
+    <button class="subj-remove" aria-label="Remove subject" title="Remove subject">&times;</button>
+  </div>
+</template>
+
+<script src="script.js"></script>
+</body>
+</html>
