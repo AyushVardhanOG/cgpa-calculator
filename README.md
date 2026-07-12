@@ -78,7 +78,7 @@ Visit `http://localhost:5500`.
 
 ## 📄 License
 
-This project is licensed under the [MIT License](LICENSE) — free to use, modify, and distribute.
+This project is licensed under the [MIT License](LICENSE) - free to use, modify, and distribute.
 
 ## 👤 Author
 
