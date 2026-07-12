@@ -19,9 +19,7 @@ Built with plain **HTML, CSS and JavaScript** — no frameworks, no build step.
 
 ## 🖥️ Live demo
 
-```
 https://ayushvardhanog.github.io/cgpa-calculator/
-```
 
 ## 🧰 Tech stack
 
